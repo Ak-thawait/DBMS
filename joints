@@ -1,0 +1,128 @@
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.30-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database BE51;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use BE51;
+Database changed
+mysql> create table oders ( orderid int , customerid int , orderdate date);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into table ( 1111, 1 , 1996);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table ( 1111, 1 , 1996)' at line 1
+mysql> create table oders1 ( orderid int , customerid int , orderdate int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into table ( 1111, 1 , 1996);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table ( 1111, 1 , 1996)' at line 1
+mysql> insert into table ( 1111," 1" ,' 1996');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table ( 1111," 1" ,' 1996')' at line 1
+mysql> create table oders1 ( orderid int , customerid varchar(20) , orderdate DATE);
+ERROR 1050 (42S01): Table 'oders1' already exists
+mysql> create table oders2 ( orderid int , customerid varchar(20) , orderdate DATE);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into table values ( 1111, "2" ,2000-02-02);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table values ( 1111, "2" ,2000-02-02)' at line 1
+mysql> insert into order2  values ( 1111, "2" ,2000-02-02);
+ERROR 1146 (42S02): Table 'BE51.order2' doesn't exist
+mysql> insert into orders2  values ( 1111, "2" ,2000-02-02);
+ERROR 1146 (42S02): Table 'BE51.orders2' doesn't exist
+mysql> insert into oders2  values ( 1111, "2" ,2000-02-02);
+ERROR 1292 (22007): Incorrect date value: '1996' for column 'orderdate' at row 1
+mysql> insert into oders2  values ( 1111, "2" ,2000-09-18);
+ERROR 1292 (22007): Incorrect date value: '1973' for column 'orderdate' at row 1
+mysql> dropn table oders1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dropn table oders1' at line 1
+mysql> drop table oders1;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop table oders2;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table orders1 ( orderid int , customerid int, orderdate int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into orders1 (111 , 4, 1996);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '111 , 4, 1996)' at line 1
+mysql> insert into orders1 (111 , 4,' 1996');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '111 , 4,' 1996')' at line 1
+mysql> insert into orders1 (1,2,1995);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,2,1995)' at line 1
+mysql> drop table orders1;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table customers( customerid int , customername varchar(20) , contactname varchar(20) ,country varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into customers values ( 1 ,"tejas","viraj","pune");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into customers values ( 2 ,"akshat","anubhav","cg");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customers values ( 3 ,"anubhav","tejas","pune");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> create table customerid ( orderid int primarykey , customerid int , orderdate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primarykey , customerid int , orderdate date)' at line 1
+mysql> create table customerid ( orderid int unique , customerid int , orderdate date);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into customerid ( 111 , 4 , '1996-09-18);
+    '> insert into customerid ( 111 , 4 , '1996-09-18');
+    '> insert into customerid ( 111 , 4 , 1996-09-18);
+    '> insert into customerid values ( 111 , 4 , '1996-09-18');
+    '> ;
+    '> ^C
+mysql> insert into customerid values ( 111 , 4 , '1996-09-18');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into customerid values ( 222 , 6 , '1996-09-18');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customerid values ( 333 , 8 , '1996-09-20');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from customerid;
++---------+------------+------------+
+| orderid | customerid | orderdate  |
++---------+------------+------------+
+|     111 |          4 | 1996-09-18 |
+|     222 |          6 | 1996-09-18 |
+|     333 |          8 | 1996-09-20 |
++---------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> selet * from customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selet * from customers' at line 1
+mysql> select * from customers;
++------------+--------------+-------------+---------+
+| customerid | customername | contactname | country |
++------------+--------------+-------------+---------+
+|          1 | tejas        | viraj       | pune    |
+|          2 | akshat       | anubhav     | cg      |
+|          3 | anubhav      | tejas       | pune    |
++------------+--------------+-------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select customerid.orderid, customers.customername, customerid.orderdate from customerid innerjoin customers on customerid.customerid = customers.customerid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'customers on customerid.customerid = customers.customerid' at line 1
+mysql> select customerid.orderid, customers.customername, customerid.orderdate from customerid INNERJOIN  customers ON  customerid.customerid = customers.customerid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'customers ON  customerid.customerid = customers.customerid' at line 1
+mysql> select customerid.orderid, customers.customername, customerid.orderdate
+    -> from orders
+    -> ;
+ERROR 1146 (42S02): Table 'BE51.orders' doesn't exist
+mysql> select customerid.orderid, customers.customername, customerid.orderdate 
